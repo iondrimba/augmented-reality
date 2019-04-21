@@ -22,6 +22,7 @@
     "babel-polyfill": "^6.6.1",
     "babel-preset-env": "^1.7.0",
     "clean-webpack-plugin": "^2.0.1",
+    "copy-webpack-plugin": "^5.0.2",
     "css-loader": "^2.1.1",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.6.0",
@@ -35,5 +36,10 @@
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.3.1",
     "webpack-merge": "^4.2.1"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.4.3",
+    "ar.js": "^1.6.2",
+    "http-server": "^0.11.1"
   }
 }
