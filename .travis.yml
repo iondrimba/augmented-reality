@@ -1,0 +1,10 @@
+sudo: required
+language: node_js
+cache: npm
+node_js:
+- '10'
+before_install:
+- npm install -g npm
+script:
+- npm i
+- npm run build

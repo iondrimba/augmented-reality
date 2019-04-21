@@ -1,0 +1,10 @@
+init:
+  - git config --global core.autocrlf true
+install:
+  - npm install
+  - npm run build
+build: off
+matrix:
+  fast_finish: true
+cache:
+  - node_modules -> package.json
