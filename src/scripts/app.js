@@ -3,8 +3,10 @@ import '../scss/demo.scss';
 
 export default class App {
   init() {
+    this.icosahedron = this.getIcosahedron(0xff005c);
     this.velocity = .08;
     this.angle = 0;
+
     this.patterns = [{
       id: 'hiro',
       mesh: this.getHole()
@@ -113,9 +115,9 @@ export default class App {
     return mesh;
   }
 
-  getIcosahedron() {
+  getIcosahedron(color = 0x00ff00) {
     const mesh = new THREE.Mesh(new THREE.IcosahedronGeometry(1, 0), new THREE.MeshPhysicalMaterial({
-      color: 0x00ff00,
+      color,
       metalness: .58,
       emissive: '#000000',
       roughness: .18,
@@ -155,6 +157,12 @@ export default class App {
 
     group.add(mesh);
 
+    this.icosahedron = this.getIcosahedron(0xff005c);
+    this.icosahedron.position.y = -.5;
+    this.icosahedron.scale.set(.5, .5, .5);
+
+    group.add(this.icosahedron);
+
     return group;
   }
 
@@ -190,6 +198,9 @@ export default class App {
 
     this.patterns[1].mesh.rotation.x -= .08;
     this.patterns[2].mesh.rotation.x -= .08;
+
+    this.icosahedron.rotation.y += .05;
+    this.icosahedron.rotation.x -= .08;
 
     this.patterns[3].mesh.position.x = Math.sin(this.angle);
 
