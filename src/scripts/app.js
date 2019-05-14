@@ -7,37 +7,62 @@ import '../scss/demo.scss';
 // import'./threex/threex-arbasecontrols';
 // import'./threex/threex-armarkercontrols';
 
+const radians = (degrees) => {
+  return degrees * Math.PI / 180;
+}
+
+const distance = (x1, y1, x2, y2) => {
+  return Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
+}
+
+const map = (value, istart, istop, ostart, ostop) => {
+  return ostart + (ostop - ostart) * ((value - istart) / (istop - istart));
+}
+
+const hexToRgbTreeJs = (hex) => {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+
+  return result ? {
+    r: parseInt(result[1], 16) / 255,
+    g: parseInt(result[2], 16) / 255,
+    b: parseInt(result[3], 16) / 255
+  } : null;
+}
+
 export default class App {
   async init() {
     this.star = new THREE.Object3D();
     this.house = new THREE.Object3D();
+    this.gutter = { size: 0 };
+    this.meshes = [];
+    this.grid = { cols: 30, rows: 30 };
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
+    this.velocity = -.1;
+    this.angle = 0;
+    this.amplitude = .1;
+    this.radius = 1;
+    this.waveLength = 200;
+    this.ripple = {};
+    this.interval = 0;
+    this.waterDropPositions = [];
+    this.ripples = [];
 
     this.createScene();
     this.createCamera();
     this.addAmbientLight();
     this.addSpotLight();
-    this.addCameraControls();
-    this.addFloor();
 
-    // this.spaceShip = await this.loadModelsAsync('dinosaur');
-    // this.spaceShip.scale.set(7, 7, 7);
-
-    // this.dinosaur = await this.loadModelsAsync('dinosaur');
-    // this.dinosaur.scale.set(5, 5, 5);
-    // this.dinosaur.rotateY(this.radians(180));
-    // this.dinosaur.position.set(15, 0, 15);
-    // this.scene.add(this.dinosaur);
-
-    // this.tower = await this.loadModelsAsync('tower');
-    // this.tower.scale.set(5, 5, 5);
-    // this.tower.rotateY(this.radians(180));
-    // this.tower.position.set(-30, 0, -30);
-    // this.scene.add(this.tower);
-
-    var geometry = new THREE.BoxGeometry(1, 1, 1);
-    var material = new THREE.MeshBasicMaterial({ color: 0xff00ff });
-    this.cube = new THREE.Mesh(geometry, material);
+    // var geometry = new THREE.BoxGeometry(10, 10, 10);
+    // var material = new THREE.MeshBasicMaterial({ color: 0xff00ff });
+    // this.cube = new THREE.Mesh(geometry, material);
     // this.cube.position.set(0, 0, 0);
+
+    var geometry = new THREE.SphereGeometry(1, 32, 32);
+    var material = new THREE.MeshNormalMaterial({ color: 0xffff00 });
+
+    this.modelA = new THREE.Mesh(geometry, material);
+    this.modelB = new THREE.Mesh(geometry, material);
 
     this.setupARToolkitContext();
     this.setupARToolkitSource();
@@ -69,10 +94,14 @@ export default class App {
   setupMarkers() {
     const patternArray = [{
       id: 'letterA',
-      model: this.cube
+      model: this.modelA
+    },
+    {
+      id: 'letterB',
+      model: this.modelB
     }];
 
-    patternArray.map((pattern) => {
+    patternArray.map((pattern, i) => {
       const markerRoot = new THREE.Group();
       this.scene.add(markerRoot);
 
@@ -80,6 +109,7 @@ export default class App {
         type: 'pattern', patternUrl: `./data/${pattern.id}.patt`,
       });
 
+      markerRoot.position.set(i * 50, 0, 0);
       markerRoot.add(pattern.model);
     });
   }
@@ -110,9 +140,10 @@ export default class App {
   createScene() {
     this.scene = new THREE.Scene();
 
-    this.renderer = new THREE.WebGLRenderer({ alpha: true});
-    this.renderer.setClearColor( 0x000000, 0 ); // the default
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    this.renderer.setPixelRatio(window.devicePixelRatio);
+    this.renderer.setSize(640, 480);
+    this.renderer.setClearColor(0x000000, 0);
 
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -121,27 +152,14 @@ export default class App {
   }
 
   createCamera() {
-    this.camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 1000);
-    this.camera.position.set(-5, 19, 32);
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    this.camera = new THREE.OrthographicCamera( width / - 2, width / 2, height / 2, height / - 2, 1, 1000 );
 
     this.scene.add(this.camera);
   }
 
-  addCameraControls() {
-    this.controls = new THREE.OrbitControls(this.camera);
-  }
-
-  addGrid() {
-    const size = 25;
-    const divisions = 25;
-    const gridHelper = new THREE.GridHelper(size, divisions);
-
-    gridHelper.position.set(0, -5, 0);
-    gridHelper.material.opacity = 0.50;
-    gridHelper.material.transparent = false;
-
-    this.scene.add(gridHelper);
-  }
 
   onResize() {
     const ww = window.innerWidth;
@@ -157,19 +175,6 @@ export default class App {
     if (this.arToolkitContext.arController) {
       this.arToolkitSource.copyElementSizeTo(this.arToolkitContext.arController.canvas)
     }
-  }
-
-  addFloor() {
-    const planeGeometry = new THREE.PlaneGeometry(100, 100);
-    const planeMaterial = new THREE.ShadowMaterial({ opacity: 1 });
-    const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-
-    planeGeometry.rotateX(- Math.PI / 2);
-
-    plane.position.y = -5;
-    plane.receiveShadow = true;
-
-    this.scene.add(plane);
   }
 
   addSpotLight() {
@@ -188,7 +193,6 @@ export default class App {
   }
 
   animate() {
-    this.controls.update();
 
     this.renderer.render(this.scene, this.camera);
 
