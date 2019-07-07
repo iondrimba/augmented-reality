@@ -30,7 +30,6 @@ module.exports = merge(common, {
     new CopyPlugin([
       { from: './src/scripts/ar.js', to: 'scripts' },
       { from: './src/data', to: 'data' },
-      { from: './src/models', to: 'models' },
       { from: './src/markers', to: 'markers' },
     ]),
     new MiniCssExtractPlugin({
