@@ -3,8 +3,7 @@
 [![Build Status](https://travis-ci.org/iondrimba/augmented-reality.svg?branch=master)](https://travis-ci.org/iondrimba/augmented-reality)
 [![Build status](https://ci.appveyor.com/api/projects/status/a7ft63rcqrok1u47?svg=true)](https://ci.appveyor.com/project/iondrimba/augmented-reality)
 [![dependencies Status](https://david-dm.org/iondrimba/augmented-reality/status.svg)](https://david-dm.org/iondrimba/augmented-reality)
-[![devDependencies Status](https://david-dm.org/iondrimba/augmented-reality/dev-status.svg)](https://david-dm.org/iondrimba/augmented-reality?type=dev) [![Greenkeeper badge](https://badges.greenkeeper.io/iondrimba/augmented-reality.svg)](https://greenkeeper.io/)
-![ezgif-4-de9aeeb2f926](https://user-images.githubusercontent.com/178548/57727671-7ac64000-7668-11e9-9aaa-d4e93f5ee442.gif)
+[![devDependencies Status](https://david-dm.org/iondrimba/augmented-reality/dev-status.svg)](https://david-dm.org/iondrimba/augmented-reality?type=dev)
 
 ## Demo
 https://iondrimba.github.io/augmented-reality/public/
