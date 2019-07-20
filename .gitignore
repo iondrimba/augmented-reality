@@ -1,2 +1,3 @@
 *.agdai
 node_modules
+debug.log
