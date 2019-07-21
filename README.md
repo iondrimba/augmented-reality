@@ -4,6 +4,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/a7ft63rcqrok1u47?svg=true)](https://ci.appveyor.com/project/iondrimba/augmented-reality)
 [![dependencies Status](https://david-dm.org/iondrimba/augmented-reality/status.svg)](https://david-dm.org/iondrimba/augmented-reality)
 [![devDependencies Status](https://david-dm.org/iondrimba/augmented-reality/dev-status.svg)](https://david-dm.org/iondrimba/augmented-reality?type=dev) [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=iondrimba/augmented-reality)](https://dependabot.com)
+![ezgif-4-de9aeeb2f926](https://user-images.githubusercontent.com/178548/57727671-7ac64000-7668-11e9-9aaa-d4e93f5ee442.gif)
 
 ## Demo
 https://iondrimba.github.io/augmented-reality/public/
