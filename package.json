@@ -15,7 +15,7 @@
   "author": "Ion D. Filho <iondrimba@gmail.com> (https://iondrimbafilho.me)",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.5.5",
+    "@babel/core": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
     "babel-core": "^6.7.0",
     "babel-loader": "^8.0.6",
@@ -38,7 +38,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.4.4",
+    "@babel/polyfill": "^7.6.0",
     "ar.js": "^1.7.8",
     "http-server": "^0.11.1"
   }
