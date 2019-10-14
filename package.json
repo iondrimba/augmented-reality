@@ -32,7 +32,7 @@
     "style-loader": "^1.0.0",
     "three-mtl-loader": "^1.0.2",
     "uglifyjs-webpack-plugin": "^2.2.0",
-    "webpack": "^4.41.0",
+    "webpack": "^4.41.1",
     "webpack-cli": "^3.3.8",
     "webpack-dev-server": "^3.8.2",
     "webpack-merge": "^4.2.2"
