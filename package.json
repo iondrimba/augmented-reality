@@ -32,14 +32,14 @@
     "style-loader": "^1.0.0",
     "three-mtl-loader": "^1.0.2",
     "uglifyjs-webpack-plugin": "^2.2.0",
-    "webpack": "^4.41.0",
+    "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.8.2",
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
     "@babel/polyfill": "^7.6.0",
-    "ar.js": "^1.7.8",
+    "ar.js": "^2.0.5",
     "http-server": "^0.11.1"
   }
 }
