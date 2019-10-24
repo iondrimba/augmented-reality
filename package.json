@@ -15,7 +15,7 @@
   "author": "Ion D. Filho <iondrimba@gmail.com> (https://iondrimbafilho.me)",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.6.2",
+    "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
     "babel-core": "^6.7.0",
     "babel-loader": "^8.0.6",
@@ -32,14 +32,14 @@
     "style-loader": "^1.0.0",
     "three-mtl-loader": "^1.0.2",
     "uglifyjs-webpack-plugin": "^2.2.0",
-    "webpack": "^4.41.0",
+    "webpack": "^4.41.2",
     "webpack-cli": "^3.3.8",
     "webpack-dev-server": "^3.8.2",
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
     "@babel/polyfill": "^7.6.0",
-    "ar.js": "^1.7.8",
+    "ar.js": "^2.0.5",
     "http-server": "^0.11.1"
   }
 }
