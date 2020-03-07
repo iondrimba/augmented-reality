@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.3",
-    "ar.js": "^2.1.5",
+    "ar.js": "^2.2.2",
     "http-server": "^0.12.1"
   }
 }
