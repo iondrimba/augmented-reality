@@ -29,7 +29,7 @@
     "html-webpack-plugin": "^4.3.0",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.14.1",
-    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.2.1",
     "three-mtl-loader": "^1.0.2",
