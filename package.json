@@ -20,7 +20,7 @@
     "@babel/preset-env": "^7.13.15",
     "npm-force-resolutions": "0.0.10",
     "babel-core": "^6.7.0",
-    "babel-loader": "^8.2.2",
+    "babel-loader": "^8.2.5",
     "babel-polyfill": "^6.6.1",
     "babel-preset-env": "^1.7.0",
     "clean-webpack-plugin": "^3.0.0",
